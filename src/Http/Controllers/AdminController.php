@@ -8,7 +8,7 @@ final class AdminController extends BaseController
 {
     public function show(): Response
     {
-        $content = 'Admin controller');
+        $content = 'Admin controller';
 
         return new Response($content);
     }
