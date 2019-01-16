@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run as WhoopsRun;
 
@@ -21,4 +23,12 @@ if ($environment !== 'production') {
 
 $whoops->register();
 
-echo 'Hello, from the bootstrap file';
+$request = Request::createFromGlobals();
+
+$content = 'Hello ' . $request->get('name', 'visitor');
+
+$response = new Response($content);
+
+$response->prepare($request);
+
+$response->send();
