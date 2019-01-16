@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use WhensMyFerry\Http\Controllers\FrontController;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run as WhoopsRun;
 
@@ -25,10 +26,13 @@ $whoops->register();
 
 $request = Request::createFromGlobals();
 
-$content = 'Hello ' . $request->get('name', 'visitor');
+$controller = new FrontController();
 
-$response = new Response($content);
+$response = $controller->show($request);
+
+if (!$response instanceof Response) {
+    throw new Exception('Controller methods must return a response object');
+}
 
 $response->prepare($request);
-
 $response->send();
