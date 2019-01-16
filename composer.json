@@ -1,0 +1,27 @@
+{
+    "name": "kirkster/whens-my-ferry",
+    "description": "Source code for When's My Ferry web site",
+    "type": "project",
+    "license": "MIT",
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "authors": [
+        {
+            "name": "Kirk Franklin",
+            "email": "kirk@magneato.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "WhensMyFerry\\": "src/"
+        }
+    }
+}
