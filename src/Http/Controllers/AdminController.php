@@ -3,15 +3,11 @@
 namespace WhensMyFerry\Http\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
-use WhensMyFerry\Framework\Rendering\TemplateRendererInterface;
 
 final class AdminController
 {
-    /** @var TemplateRendererInterface $templateRenderer */
-    private $templateRenderer;
-
-    public function __construct(TemplateRendererInterface $templateRenderer) {
-        $this->templateRenderer = $templateRenderer;
+    public function __construct()
+    {
     }
 
     public function show(): Response
