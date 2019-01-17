@@ -21,7 +21,7 @@ $dotenv = Dotenv::create(__DIR__ . '/../');
 $dotenv->load();
 $mode = getenv('MODE');
 
-/** Error handler*/
+/** Error handler */
 
 $whoops = new Run;
 
@@ -30,9 +30,12 @@ if ($mode === 'development') {
 } else {
     $whoops->pushHandler(
         function () use ($request) {
-            Response::create('An internal server error has occurred.', Response::HTTP_INTERNAL_SERVER_ERROR)
-                ->prepare($request)
-                ->send();
+            Response::create(
+                'An internal server error has occurred.',
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            )
+            ->prepare($request)
+            ->send();
         }
     );
 }
@@ -44,23 +47,20 @@ $whoops->register();
 $container = new Container();
 
 $container
-    ->add('Twig_Environment');
-//    ->withArgument(
-//        new Twig_Loader_Filesystem(__DIR__ . '/../views/')
-//    );
-
-$container
-    ->delegate(
-        new ReflectionContainer()
+    ->add(Twig_Environment::class)
+    ->addArgument(
+        new Twig_Loader_Filesystem(__DIR__ . '/../resources/views/')
     );
+
+$container->delegate(new ReflectionContainer());
 
 /** Routes */
 
-$dispatcher = simpleDispatcher(function (RouteCollector $r) {
-    $routes = require __DIR__ . '/routes.php';
+$dispatcher = simpleDispatcher(function (RouteCollector $routeCollector) {
+    $routes = require_once __DIR__ . '/routes.php';
 
     foreach ($routes as $route) {
-        $r->addRoute($route[0], $route[1], $route[2]);
+        $routeCollector->addRoute($route[0], $route[1], $route[2]);
     }
 });
 
@@ -70,10 +70,16 @@ $routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo(
 
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
-        $response = Response::create('404 Not Found', Response::HTTP_NOT_FOUND);
+        $response = Response::create(
+            '404 Not Found',
+            Response::HTTP_NOT_FOUND
+        );
         break;
     case Dispatcher::METHOD_NOT_ALLOWED:
-        $response = Response::create('405 Method Not Allowed', Response::HTTP_METHOD_NOT_ALLOWED);
+        $response = Response::create(
+            '405 Method Not Allowed',
+            Response::HTTP_METHOD_NOT_ALLOWED
+        );
         break;
     case Dispatcher::FOUND:
         $fullyQualifiedName = $routeInfo[1][0];
