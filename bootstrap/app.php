@@ -7,6 +7,7 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use WhensMyFerry\Controllers\BaseController;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 use function FastRoute\simpleDispatcher;
@@ -101,4 +102,6 @@ switch ($routeInfo[0]) {
 if ($response instanceof Response) {
     $response->prepare($request);
     $response->send();
+} else {
+    echo 'Something has gone seriously wrong.';
 }
