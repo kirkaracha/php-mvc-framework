@@ -1,6 +1,6 @@
 {
   "name": "kirkaracha/whens-my-ferry",
-  "description": "Source code for When's My Ferry web site",
+  "description": "Source code for example PHP MVC framework",
   "type": "project",
   "license": "MIT",
   "authors": [
@@ -18,7 +18,7 @@
   },
   "autoload": {
     "psr-4": {
-      "WhensMyFerry\\": "src/"
+      "Framework\\": "src/"
     }
   },
   "autoload-dev": {

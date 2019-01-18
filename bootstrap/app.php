@@ -7,7 +7,7 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use WhensMyFerry\Controllers\BaseController;
+use Framework\Controllers\BaseController;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 use function FastRoute\simpleDispatcher;

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace WhensMyFerry\Controllers;
+namespace Framework\Controllers;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
