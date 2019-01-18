@@ -34,6 +34,7 @@ class BaseController
         return $response;
     }
 
+    /** @throws Exception */
     public function exception(): void
     {
         throw new Exception('Test exception');
