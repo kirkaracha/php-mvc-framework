@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-class GoodbyeControllerTest extends BaseUnitTest
+final class GoodbyeControllerTest extends BaseUnitTest
 {
 
 }
